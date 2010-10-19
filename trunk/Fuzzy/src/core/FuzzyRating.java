@@ -5,18 +5,16 @@
 
 package core;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author daniele
  */
-public class Item {
+public class FuzzyRating {
 
-    private int id;
+    public static void pPlus(User u, ArrayList<Item> aI){
 
-    public Item(int id) {
-        this.id = id;
     }
-
-    public int getId(){return this.id;}
 
 }
