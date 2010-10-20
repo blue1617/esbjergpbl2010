@@ -31,15 +31,22 @@ public class Test {
 
         //again this ratings should be obtained from db
         Integer[] ratingsUser1 = {0,5,1,4,0,0,0,0};
+        Integer[] ratingsUser2 = {5,0,0,3,0,1,0,0};
+        Integer[] ratingsUser3 = {0,5,0,0,1,0,0,0};
 
         Iterator<Item> iItms = items.iterator();
         int i=0;
         while(iItms.hasNext()){
-            user1.addRatings(iItms.next(),ratingsUser1[i]);
+            Item item = iItms.next();
+            user1.addRatings(item,ratingsUser1[i]);
+            user2.addRatings(item,ratingsUser2[i]);
+            user3.addRatings(item,ratingsUser3[i]);
             i++;
         }
 
         System.out.println(user1.toString());
+        System.out.println(user2.toString());
+        System.out.println(user3.toString());
 
         //System.out.println((double)3/4);
 
