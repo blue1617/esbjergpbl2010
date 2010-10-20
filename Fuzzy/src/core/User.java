@@ -57,7 +57,7 @@ public class User {
             Entry<Integer,Double> element = it.next();
             result.append(element.getValue()+",");
         }
-
+        result.append("]");
         return result.toString();
 
     }
