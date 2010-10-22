@@ -70,8 +70,10 @@ public class Test {
             }
         }
 
-        //this means that item (items.get(x))
-        double wot= FuzzyReasoning.supTcompositionMin(items.get(6),users.get(1));
+        
+        //double wot= FuzzyReasoning.supTcompositionMin(items.get(6),users.get(1));
+        //System.out.println(wot);
+        double wot= FuzzyReasoning.similarityUsers(users.get(2), users.get(0),items);
         System.out.println(wot);
 //        System.out.println(users.get(0).toString());
 //        System.out.println(users.get(1).toString());

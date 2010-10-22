@@ -49,6 +49,22 @@ public class FuzzyReasoning {
         return max;
     }
 
+    public static double similarityUsers(User u,User x,ArrayList<Item> items){
+        double min = 100000;
+        Iterator<Item> it = items.iterator();
+        while(it.hasNext()){
+            Item i = it.next();
+            double pPlus = u.getPlusRatings().get(i.getId());
+            double supCompPlus = supTcompositionPlus(i, x);
+            double pMin = u.getMinusRatings().get(i.getId());
+            double supCompMin = supTcompositionMin(i, x);
+            double tempMin = fMmin(implicator(pPlus, supCompPlus),implicator(pMin, supCompMin));
+            min = fMmin(tempMin,min);
+        }
+        
+        return min;
+    }
+
 
     private static double fMax(double x,double y){
         if(x>y)
@@ -62,6 +78,14 @@ public class FuzzyReasoning {
             return x;
         else
             return y;
+    }
+
+    private static double implicator(double x,double y){
+        double result = 1 - x + y;
+        if(result >= 1)
+            return 1;
+        else
+            return result;
     }
 
 }
