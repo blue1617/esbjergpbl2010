@@ -21,11 +21,13 @@ public class User {
 
     private int id;
 
-    HashMap<Integer,Double> ratings;
+    HashMap<Integer,Double> plusRatings;
+    HashMap<Integer,Double> minusRatings;
     
     public User(int id) {
         this.id = id;
-        this.ratings= new HashMap<Integer, Double>();
+        this.plusRatings= new HashMap<Integer, Double>();
+        this.minusRatings= new HashMap<Integer, Double>();
     }
 
     public int getId(){
@@ -33,7 +35,16 @@ public class User {
     }
 
     public void addRatings(Item i,int rate){
-        this.ratings.put(i.getId(),this.pPlus(rate));
+        this.plusRatings.put(i.getId(),this.pPlus(rate));
+        this.minusRatings.put(i.getId(),this.pMinus(rate));
+    }
+
+    public HashMap<Integer,Double> getPlusRatings(){
+        return this.plusRatings;
+    }
+
+    public HashMap<Integer,Double> getMinusRatings(){
+        return this.minusRatings;
     }
 
 
@@ -46,15 +57,33 @@ public class User {
         return  result;
     }
 
+        private double pMinus(int rate){
+        double result;
+        if(rate>0)
+            result = (double)(5-rate)/4;
+        else
+            result = (double)0;
+        return  result;
+    }
+
 
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
         result.append("User"+ this.getId()+ " [");
 
-        Iterator<Entry<Integer,Double>> it= this.ratings.entrySet().iterator();
+        Iterator<Entry<Integer,Double>> it= this.plusRatings.entrySet().iterator();
         while(it.hasNext()){
             Entry<Integer,Double> element = it.next();
+            result.append(element.getValue()+",");
+        }
+        result.append("]");
+
+        result.append("  /-/  [");
+
+        Iterator<Entry<Integer,Double>> itmin= this.minusRatings.entrySet().iterator();
+        while(itmin.hasNext()){
+            Entry<Integer,Double> element = itmin.next();
             result.append(element.getValue()+",");
         }
         result.append("]");
