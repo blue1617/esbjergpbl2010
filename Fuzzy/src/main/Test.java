@@ -72,8 +72,9 @@ public class Test {
 
         
         //double wot= FuzzyReasoning.supTcompositionMin(items.get(6),users.get(1));
-        //System.out.println(wot);
-        double wot= FuzzyReasoning.similarityUsers(users.get(2), users.get(0),items);
+        //double wot= FuzzyReasoning.similarityUsers(users.get(1), users.get(0),items);
+        //double wot= FuzzyReasoning.predictionPlus(users.get(1), items.get(6), users, items);
+        double wot= FuzzyReasoning.predictionMin(users.get(2), items.get(6), users, items);
         System.out.println(wot);
 //        System.out.println(users.get(0).toString());
 //        System.out.println(users.get(1).toString());

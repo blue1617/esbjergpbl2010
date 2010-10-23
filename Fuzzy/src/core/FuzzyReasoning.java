@@ -50,6 +50,8 @@ public class FuzzyReasoning {
     }
 
     public static double similarityUsers(User u,User x,ArrayList<Item> items){
+        //this need to be initialazed to the max possible value
+        //that should be 1, but i'm not sure
         double min = 100000;
         Iterator<Item> it = items.iterator();
         while(it.hasNext()){
@@ -63,6 +65,32 @@ public class FuzzyReasoning {
         }
         
         return min;
+    }
+
+    public static double predictionPlus(User u, Item i,ArrayList<User> users,ArrayList<Item> items){
+        double max=0;
+        Iterator<User> itUs = users.iterator();
+        while(itUs.hasNext()){
+            User user= itUs.next();
+            double supCompPlus = supTcompositionPlus(i,user);
+            double simUsers = similarityUsers(user, u, items);
+            double min = fMmin(supCompPlus, simUsers);
+            max= fMax(min, max);
+        }
+        return max;
+    }
+
+    public static double predictionMin(User u, Item i,ArrayList<User> users,ArrayList<Item> items){
+        double max=0;
+        Iterator<User> itUs = users.iterator();
+        while(itUs.hasNext()){
+            User user= itUs.next();
+            double supCompMin = supTcompositionMin(i,user);
+            double simUsers = similarityUsers(user, u, items);
+            double min = fMmin(supCompMin, simUsers);
+            max= fMax(min, max);
+        }
+        return max;
     }
 
 
