@@ -57,7 +57,7 @@ public class User {
         return  result;
     }
 
-        private double pMinus(int rate){
+    private double pMinus(int rate){
         double result;
         if(rate>0)
             result = (double)(5-rate)/4;
