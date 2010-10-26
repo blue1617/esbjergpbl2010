@@ -17,8 +17,9 @@ public class User implements java.io.Serializable{
     public String birthday;
     public String country;
     public String sex;
+    public String password;
 
-    public User(int idUse, int idIte, String nam, String surnam, String birthda, String countr, String se){
+    public User(int idUse, int idIte, String nam, String surnam, String birthda, String countr, String se, String pass){
         idUser = idUse;
         idItem = idIte;
         name = nam;
@@ -26,7 +27,15 @@ public class User implements java.io.Serializable{
         birthday = birthda;
         country = countr;
         sex = se;
+        password = pass;
+    }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getBirthday() {
