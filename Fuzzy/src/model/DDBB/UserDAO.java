@@ -15,4 +15,7 @@ import model.dto.User;
  */
 public interface UserDAO {
     public ArrayList<User> getUsers() throws SQLException;
+    public boolean validate(String name, String password) throws SQLException;
+    public User getUser(String name) throws SQLException;
+
 }

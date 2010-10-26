@@ -16,7 +16,7 @@ public class MySQLUserDAO extends MySQLDaoFactory implements UserDAO{
 	    while (rs.next()) {
 		  User user = new User( rs.getInt("idUser"), rs.getInt("idItem"),
 					rs.getString( "name" ), rs.getString( "surname" ),
-					rs.getString( "birthday" ), rs.getString("country"), rs.getString("sex"));
+					rs.getString( "birthday" ), rs.getString("country"), rs.getString("sex"), rs.getString("password"));
                   list.add(user);
 	    }
 	    sentencia.close();
@@ -24,15 +24,31 @@ public class MySQLUserDAO extends MySQLDaoFactory implements UserDAO{
 	    return list;
   }
 
-  public int insertInformation() {
-	// TODO Auto-generated method stub
-	return 0;
-  }
+    public boolean validate(String name, String password) throws SQLException {
+        Connection conexion = getConnection();
+        String sentence = "SELECT * FROM USER WHERE NAME='"+name+"';";
+        Statement sentencia = conexion.createStatement();
+        ResultSet rs = sentencia.executeQuery(sentence);
+        sentencia.close();
+	    closeConnection(conexion);
+        if((rs.getString("name").equals(name))&&(rs.getString("password").equals(password)))
+            return true;
+        else
+            return false;
+    }
 
-  public String getInformation() {
-	// TODO Auto-generated method stub
-	return null;
-  }
+    public User getUser(String name) throws SQLException {
+        Connection conexion = getConnection();
+        String sentence = "SELECT * FROM USER WHERE NAME='"+name+"';";
+        Statement sentencia = conexion.createStatement();
+        ResultSet rs = sentencia.executeQuery(sentence);
+        User user = new User( rs.getInt("idUser"), rs.getInt("idItem"),
+					rs.getString( "name" ), rs.getString( "surname" ),
+					rs.getString( "birthday" ), rs.getString("country"), rs.getString("sex"), rs.getString("password"));
+        sentencia.close();
+	closeConnection(conexion);
+        return user;
+    }
 
  
 }
