@@ -10,11 +10,19 @@ package model.dto;
  * @author keldor
  */
 public class Film {
-    int idFilmM;
+    int idFilm;
     int idItem;
     String title;
     String director;
     String date;
+
+    public void Film(int fil, int ite, String titl, String directo, String dat){
+        this.idFilm = fil;
+        this.idItem = ite;
+        this.title = titl;
+        this.director = directo;
+        this.date = dat;
+    }
 
     public String getDate() {
         return date;
@@ -32,12 +40,12 @@ public class Film {
         this.director = director;
     }
 
-    public int getIdFilmM() {
-        return idFilmM;
+    public int getIdFilm() {
+        return idFilm;
     }
 
-    public void setIdFilmM(int idFilmM) {
-        this.idFilmM = idFilmM;
+    public void setIdFilm(int idFilmM) {
+        this.idFilm = idFilmM;
     }
 
     public int getIdItem() {
