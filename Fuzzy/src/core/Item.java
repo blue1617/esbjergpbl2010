@@ -15,16 +15,16 @@ import java.util.Map.Entry;
  */
 public class Item {
 
-    private int id;
-
+    private int idItem;
+    private int sport, comedy, drama, action, war;
     HashMap<Integer,Double> similarityItem;
 
     public Item(int id) {
-        this.id = id;
+        this.idItem = id;
         this.similarityItem = new HashMap<Integer, Double>();
     }
 
-    public int getId(){return this.id;}
+    public int getId(){return this.idItem;}
 
     public void addSimilarityItem(Item i,double degree){
         this.similarityItem.put(i.getId(), degree);
