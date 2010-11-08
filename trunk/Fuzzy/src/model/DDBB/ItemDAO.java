@@ -7,12 +7,13 @@ package model.DDBB;
 
 import model.dto.Item;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
  * @author keldor
  */
 public interface ItemDAO {
-    public Item getItem(int idItem) throws SQLException;
+    public ArrayList<Item> getItems() throws SQLException;
 
 }

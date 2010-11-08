@@ -72,6 +72,10 @@ public class GenreClient {
 		url= url.replaceAll("%28", "(");
 		url= url.replaceAll("%29", ")");
 
+                System.out.println("<----->");
+                System.out.println(url);
+                System.out.println("<----->");
+
 		HttpGet httpget = new HttpGet(url);
     	httpget.addHeader("User-Agent", "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2.3) Gecko/20100401 Firefox/3.6.3");
     	ResponseHandler<String> responseHandler = new BasicResponseHandler();
@@ -113,7 +117,7 @@ public class GenreClient {
 		String filename = "u.item";
 		ArrayList<String[]> list = readFile(filename);
 		Iterator<String[]> lineIterator = list.iterator();
-		int i=1;
+                int i=0;
 		while(lineIterator.hasNext()){
 			MovieHTML movie = createMovie(lineIterator.next());
 			if(movie != null)
@@ -121,7 +125,8 @@ public class GenreClient {
 
 			i++;
 			Thread.currentThread().sleep(1500);
-			if(i==11) break;
+                        if(i==36)break;
+			
 		}
 
 		Iterator<MovieHTML> blabla = movies.iterator();
