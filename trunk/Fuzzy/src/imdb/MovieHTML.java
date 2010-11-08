@@ -48,6 +48,14 @@ public class MovieHTML {
         return result.toString();
 	}
 
+    public String getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(String releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
 
 }
 

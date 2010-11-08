@@ -16,6 +16,62 @@ public class Item {
         gameshow, history, horror, music, musical, mistery, news,
         reality_tv, romance, science_fiction, sport,
         talk_show, thriller, war, western;
+    public int total() {
+        int total=0;
+        if(this.action!=0)
+            total=total+1;
+        if(this.adventure!=0)
+            total=total+1;
+        if(this.animation!=0)
+            total=total+1;
+        if(this.biography!=0)
+            total=total+1;
+        if(this.comedy!=0)
+            total=total+1;
+        if(this.crime!=0)
+            total=total+1;
+        if(this.documentary!=0)
+            total=total+1;
+        if(this.drama!=0)
+            total=total+1;
+        if(this.family!=0)
+            total=total+1;
+        if(this.fantasy!=0)
+            total=total+1;
+        if(this.film_noir!=0)
+            total=total+1;
+        if(this.gameshow!=0)
+            total=total+1;
+        if(this.history!=0)
+            total=total+1;
+        if(this.horror!=0)
+            total=total+1;
+        if(this.music!=0)
+            total=total+1;
+        if(this.musical!=0)
+            total=total+1;
+        if(this.mistery!=0)
+            total=total+1;
+        if(this.news!=0)
+            total=news+1;
+        if(this.reality_tv!=0)
+            total=news+1;
+        if(this.romance!=0)
+            total=news+1;
+        if(this.science_fiction!=0)
+            total=news+1;
+        if(this.sport!=0)
+            total=news+1;
+        if(this.talk_show!=0)
+            total=news+1;
+        if(this.thriller!=0)
+            total=news+1;
+        if(this.war!=0)
+            total=news+1;
+        if(this.western!=0)
+            total=news+1;
+        return total;
+    }
 
     public int getAction() {
         return action;

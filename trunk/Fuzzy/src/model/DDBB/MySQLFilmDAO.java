@@ -27,16 +27,15 @@ public class MySQLFilmDAO extends MySQLDaoFactory implements FilmDAO{
     }
 
     public void insertFilm(MovieHTML mov) throws SQLException {
-            private int id;
-            private String title;
-            private String releaseDate;
-            private ArrayList<String> rankedGenres;
-        
+
 
             ArrayList<User> list = new ArrayList<User>();
             Connection conexion = getConnection();
-            String sentence = "SELECT * FROM USER";
             Statement sentencia = conexion.createStatement();
+            String sentence = "INSERT INTO `Film` (`"+mov.getId()+"`, `"+mov.getId()+"`, `Title`, `Year`) VALUES ('1', '1', 'hi wolrd', '1999-05-06');";
+            statement.executeUpdate("INSERT INTO Customers " + "VALUES (1001, 'Simpson', 'Mr.', 'Springfield', 2001)");
+
+           
 	    ResultSet rs = sentencia.executeQuery( sentence );
 
 	    while (rs.next()) {
