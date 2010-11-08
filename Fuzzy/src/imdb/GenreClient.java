@@ -14,12 +14,18 @@ import java.io.Reader;
 import java.io.StringReader;
 import java.lang.reflect.Array;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.text.html.HTML;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
+import model.DDBB.DAOFactory;
+import model.DDBB.FilmDAO;
+import model.DDBB.UserDAO;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -117,15 +123,25 @@ public class GenreClient {
 		String filename = "u.item";
 		ArrayList<String[]> list = readFile(filename);
 		Iterator<String[]> lineIterator = list.iterator();
-                int i=0;
+		int i=0;
 		while(lineIterator.hasNext()){
 			MovieHTML movie = createMovie(lineIterator.next());
-			if(movie != null)
+                        i++;
+                        System.out.println("Ciclo "+i);
+			if(movie != null){
+                            
 				movies.add(movie);
-
-			i++;
-			Thread.currentThread().sleep(1500);
-                        if(i==36)break;
+                                System.out.println("Pelicula: "+movie.getId()+movie.getTitle()+movie.releaseDate());
+                                DAOFactory MySQLFactory = DAOFactory.getDAOFactory(DAOFactory.MySQL);
+                                FilmDAO DAO = MySQLFactory.getFilmDAO();
+                try {
+                    DAO.insertFilm(movie);
+                } catch (SQLException ex) {
+                    Logger.getLogger(GenreClient.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                System.out.println("User in database:");
+                        }
+                        System.out.println("waiting "+i);
 			
 		}
 

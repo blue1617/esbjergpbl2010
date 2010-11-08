@@ -52,12 +52,14 @@ public class MySQLDaoFactory extends DAOFactory {
 
       return new MySQLUserDAO();
   }
+  public FilmDAO getFilmDAO() {
 
-    @Override
-    public ItemDAO getItemDAO() {
-        return new MySQLItemDAO();
-    }
+      return new MySQLFilmDAO();
+  }
+  public ItemDAO getItemDAO() {
 
+      return new MySQLItemDAO();
+  }
 
 
 
