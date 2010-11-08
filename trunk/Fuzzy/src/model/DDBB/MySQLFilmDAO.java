@@ -27,23 +27,13 @@ public class MySQLFilmDAO extends MySQLDaoFactory implements FilmDAO{
     }
 
     public void insertFilm(MovieHTML mov) throws SQLException {
-
-
-            ArrayList<User> list = new ArrayList<User>();
+            
             Connection conexion = getConnection();
             Statement sentencia = conexion.createStatement();
-            String sentence = "INSERT INTO `Film` (`"+mov.getId()+"`, `"+mov.getId()+"`, `Title`, `Year`) VALUES ('1', '1', 'hi wolrd', '1999-05-06');";
-            statement.executeUpdate("INSERT INTO Customers " + "VALUES (1001, 'Simpson', 'Mr.', 'Springfield', 2001)");
+            String sentence = "INSERT INTO `Film` (`idFilm`, `idItem`, `Title`, `Year`) VALUES ('"+mov.getId()+"', '"+mov.getId()+"', '"+mov.getTitle()+"', '"+mov.releaseDate()+"');";
+            System.out.println(sentence);
+            sentencia.executeUpdate(sentence);
 
-           
-	    ResultSet rs = sentencia.executeQuery( sentence );
-
-	    while (rs.next()) {
-		  User user = new User( rs.getInt("idUser"), rs.getInt("idItem"),
-					rs.getString( "name" ), rs.getString( "surname" ),
-					rs.getString( "birthday" ), rs.getString("country"), rs.getString("sex"), rs.getString("password"));
-                  list.add(user);
-	    }
 	    sentencia.close();
 	    closeConnection(conexion);
 	    

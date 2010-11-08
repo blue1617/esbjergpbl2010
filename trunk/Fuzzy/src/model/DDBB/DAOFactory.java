@@ -13,7 +13,7 @@ public abstract class DAOFactory {
 	  // created. The concrete factories will have to 
 	  // implement these methods.
 	  public abstract UserDAO getUserDAO();
-          public abstract ItemDAO getItemDAO();
+          public abstract FilmDAO getFilmDAO();
           public abstract void create()throws Exception;
           public abstract Connection getConnection();
           public abstract Statement createConnection()throws Exception;
