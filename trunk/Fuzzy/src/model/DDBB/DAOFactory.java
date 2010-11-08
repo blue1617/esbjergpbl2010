@@ -14,6 +14,7 @@ public abstract class DAOFactory {
 	  // implement these methods.
 	  public abstract UserDAO getUserDAO();
           public abstract FilmDAO getFilmDAO();
+          public abstract ItemDAO getItemDAO();
           public abstract void create()throws Exception;
           public abstract Connection getConnection();
           public abstract Statement createConnection()throws Exception;
