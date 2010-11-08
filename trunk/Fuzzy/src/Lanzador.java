@@ -49,6 +49,8 @@ public class Lanzador {
                 HashMap<String,Double> rank =  ff.getFuzzyVector(items.get(0));
                 System.out.println(rank.toString());
 
+                
+
 
 	}
 
