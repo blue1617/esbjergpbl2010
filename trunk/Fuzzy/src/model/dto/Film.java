@@ -13,14 +13,13 @@ public class Film {
     int idFilm;
     int idItem;
     String title;
-    String director;
     String date;
 
-    public void Film(int fil, int ite, String titl, String directo, String dat){
+
+    public Film(int fil, int ite, String titl, String dat){
         this.idFilm = fil;
         this.idItem = ite;
         this.title = titl;
-        this.director = directo;
         this.date = dat;
     }
 
@@ -30,14 +29,6 @@ public class Film {
 
     public void setDate(String date) {
         this.date = date;
-    }
-
-    public String getDirector() {
-        return director;
-    }
-
-    public void setDirector(String director) {
-        this.director = director;
     }
 
     public int getIdFilm() {

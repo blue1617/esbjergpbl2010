@@ -1,3 +1,4 @@
+import control.DataMining;
 import control.Fuzzifier;
 import control.Similarity;
 import java.sql.*;
@@ -8,6 +9,7 @@ import java.util.Map.Entry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.DDBB.*;
+import model.dto.Film;
 import model.dto.Item;
 import model.dto.User;
 
@@ -19,9 +21,9 @@ public class Lanzador {
 	 */
 	public static void main(String[] args) throws SQLException {
 		// create the required DAO Factory
-		DAOFactory MySQLFactory = DAOFactory.getDAOFactory(DAOFactory.MySQL);
+		//DAOFactory MySQLFactory = DAOFactory.getDAOFactory(DAOFactory.MySQL);
 
-                  System.out.println("asdsfd");
+               //   System.out.println("asdsfd");
         
 		/*UserDAO userDAO = MySQLFactory.getUserDAO();
                 System.out.println("asdsfd");
@@ -35,10 +37,15 @@ public class Lanzador {
 		System.out.println(use.size());
                  */
 
-                ItemDAO itemDAO = MySQLFactory.getItemDAO();
-                System.out.println("asdsfd");
-                ArrayList<Item> items = itemDAO.getItems();
-                System.out.println("number of Items in database: "+ items.size());
+              //  ItemDAO itemDAO = MySQLFactory.getItemDAO();
+               // System.out.println("asdsfd");
+               // ArrayList<Item> items = itemDAO.getItems();
+                DataMining data = new DataMining();
+                ArrayList<Film> films;
+                films = data.NotRankedList(2);
+                for(int i=0;i<films.size();i++){
+                    System.out.println("Pinicula: "+ films.get(i).getTitle());
+                }
                 /*int i=0;
                 while(i<items.size()){
                     System.out.println(items.get(i).getIdItem());
@@ -49,8 +56,8 @@ public class Lanzador {
                 //Fuzzifier ff = new Fuzzifier();
                 //HashMap<String,Double> rank =  ff.getFuzzyVector(items.get(0));
                 //System.out.println(rank.toString());
-                Similarity ss = new Similarity();
-                System.out.println(ss.cosineItemSimilarity(items.get(0),items.get(1)));
+               // Similarity ss = new Similarity();
+               // System.out.println(ss.cosineItemSimilarity(items.get(0),items.get(1)));
 
 	}
 

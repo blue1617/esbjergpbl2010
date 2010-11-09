@@ -60,7 +60,10 @@ public class MySQLDaoFactory extends DAOFactory {
 
       return new MySQLItemDAO();
   }
+  public RateDAO getRateDAO() {
 
+      return new MySQLRateDAO();
+  }
 
 
 
