@@ -7,7 +7,9 @@ package imdb;
 
 import java.lang.String;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map.Entry;
 
 
 public class MovieHTML {
@@ -56,6 +58,43 @@ public class MovieHTML {
 
     public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
+    }
+
+    public HashMap<String, Integer> lista() {
+        HashMap<String,Integer> rank;
+        rank= new HashMap<String, Integer>();
+        rank.put("action", 0);
+        rank.put("adventure", 0);
+        rank.put("animation", 0);
+        rank.put("biography", 0);
+        rank.put("comedy", 0);
+        rank.put("crime", 0);
+        rank.put("documentary", 0);
+        rank.put("drama", 0);
+        rank.put("family", 0);
+        rank.put("fantasy", 0);
+        rank.put("film-noir", 0);
+        rank.put("gameshow", 0);
+        rank.put("history", 0);
+        rank.put("horror", 0);
+        rank.put("music", 0);
+        rank.put("musical", 0);
+        rank.put("mystery", 0);
+        rank.put("news", 0);
+        rank.put("reality-tv", 0);
+        rank.put("romance", 0);
+        rank.put("sci-fi", 0);
+        rank.put("sport",0);
+        rank.put("talk-show", 0);
+        rank.put("thriller", 0);
+        rank.put("war", 0);
+        rank.put("western", 0);
+        for(int i=0;i<this.rankedGenres.size();i++){
+            
+            rank.put(this.getRankedGenre().get(i),(i+1));
+        }
+
+        return rank;
     }
 
     public String releaseDate(){

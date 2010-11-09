@@ -25,6 +25,7 @@ import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import model.DDBB.DAOFactory;
 import model.DDBB.FilmDAO;
+import model.DDBB.ItemDAO;
 import model.DDBB.UserDAO;
 
 import org.apache.http.HttpEntity;
@@ -106,7 +107,7 @@ public class GenreClient {
     	if(nodes.getLength() != 0 ){
 
 	    	for (int i = 0; i < nodes.getLength(); i++) {
-	            rankedGenres.add((String) nodes.item(i).getNodeValue());
+	            rankedGenres.add((String) nodes.item(i).getNodeValue().toLowerCase());
 	    	}
 	    	return rankedGenres;
 
@@ -134,8 +135,15 @@ public class GenreClient {
                                 System.out.println("Pelicula: "+movie.getId()+movie.getTitle()+movie.releaseDate());
                                 DAOFactory MySQLFactory = DAOFactory.getDAOFactory(DAOFactory.MySQL);
                                 FilmDAO DAO = MySQLFactory.getFilmDAO();
+                                ItemDAO iDAO = MySQLFactory.getItemDAO();
                 try {
                     DAO.insertFilm(movie);
+                   
+                } catch (SQLException ex) {
+                    Logger.getLogger(GenreClient.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                try {
+                    iDAO.insertItem(movie);
                 } catch (SQLException ex) {
                     Logger.getLogger(GenreClient.class.getName()).log(Level.SEVERE, null, ex);
                 }

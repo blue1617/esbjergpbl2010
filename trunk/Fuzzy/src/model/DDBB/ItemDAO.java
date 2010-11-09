@@ -5,6 +5,7 @@
 
 package model.DDBB;
 
+import imdb.MovieHTML;
 import model.dto.Item;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -15,5 +16,6 @@ import java.util.ArrayList;
  */
 public interface ItemDAO {
     public ArrayList<Item> getItems() throws SQLException;
+    public void insertItem(MovieHTML mov) throws SQLException;
 
 }
