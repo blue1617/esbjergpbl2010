@@ -10,6 +10,7 @@ import imdb.MovieHTML;
 import java.sql.*;
 import java.util.ArrayList;
 import model.dto.Film;
+import model.dto.Rate;
 import model.dto.User;
 
 /**
@@ -37,6 +38,33 @@ public class MySQLFilmDAO extends MySQLDaoFactory implements FilmDAO{
 	    sentencia.close();
 	    closeConnection(conexion);
 	    
+    }
+
+    public ArrayList<Film> getNotRankedFilms(ArrayList<Rate> Rates) throws SQLException {
+        String sentence="select * from film where ";
+        String sentence2="";
+        ArrayList<Film> list = new ArrayList<Film>();
+        for(int i=0;i<Rates.size();i++){
+            if(i==0){
+                sentence2=sentence2+"idFilm!="+Rates.get(i).getIdFilm();
+            } else{
+                sentence2=sentence2+" and "+"idFilm!="+Rates.get(i).getIdFilm();
+            }
+        }
+        sentence=sentence+sentence2+";";
+        System.out.println(sentence);
+        Connection conexion = getConnection();
+        Statement sentencia = conexion.createStatement();
+	    ResultSet rs = sentencia.executeQuery( sentence );
+
+	    while (rs.next()) {
+		  Film film = new Film( rs.getInt("idFilm"), rs.getInt("idItem"),
+					rs.getString( "Title" ), rs.getString( "Year" ));
+                  list.add(film);
+	    }
+	    sentencia.close();
+	    closeConnection(conexion);
+	    return list;
     }
 
 }
