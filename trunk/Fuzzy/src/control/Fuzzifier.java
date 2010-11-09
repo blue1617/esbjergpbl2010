@@ -16,7 +16,7 @@ import model.dto.Item;
  */
 public class Fuzzifier {
 
-    public HashMap<String,Double> getFuzzyVector(Item i){
+    public static HashMap<String,Double> getFuzzyVector(Item i){
 
         HashMap<String,Double> result = new HashMap<String, Double>();
 
@@ -79,7 +79,7 @@ public class Fuzzifier {
     }
 
 
-    private double gaussianMembership(int position,int total){
+    private static double gaussianMembership(int position,int total){
         double alpha = 1.2;
         double denominator = Math.pow(2,Math.sqrt(alpha*total*(position-1)));
         return position/denominator;
