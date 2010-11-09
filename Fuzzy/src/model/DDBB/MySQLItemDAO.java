@@ -5,6 +5,7 @@
 
 package model.DDBB;
 
+import imdb.MovieHTML;
 import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -58,6 +59,17 @@ public class MySQLItemDAO extends MySQLDaoFactory implements ItemDAO {
         sentencia.close();
         closeConnection(conexion);
         return list;
+    }
+
+    public void insertItem(MovieHTML mov) throws SQLException {
+        Connection conexion = getConnection();
+            Statement sentencia = conexion.createStatement();
+            String sentence = "INSERT INTO `Item` VALUES ('"+mov.getId()+"', '"+mov.lista().get("action")+"', '"+mov.lista().get("adventure")+"', '"+mov.lista().get("animation")+"', '"+mov.lista().get("biography")+"', '"+mov.lista().get("comedy")+"', '"+mov.lista().get("crime")+"', '"+mov.lista().get("documentary")+"', '"+mov.lista().get("drama")+"', '"+mov.lista().get("family")+"', '"+mov.lista().get("fantasy")+"', '"+mov.lista().get("film_noir")+"', '"+mov.lista().get("gameshow")+"', '"+mov.lista().get("history")+"', '"+mov.lista().get("horror")+"', '"+mov.lista().get("music")+"', '"+mov.lista().get("musical")+"', '"+mov.lista().get("mistery")+"', '"+mov.lista().get("news")+"', '"+mov.lista().get("reality_tv")+"', '"+mov.lista().get("romance")+"', '"+mov.lista().get("science_fiction")+"', '"+mov.lista().get("sport")+"', '"+mov.lista().get("talk_show")+"', '"+mov.lista().get("thriller")+"', '"+mov.lista().get("war")+"', '"+mov.lista().get("western")+"');";
+            System.out.println(sentence);
+            sentencia.executeUpdate(sentence);
+
+	    sentencia.close();
+	    closeConnection(conexion);
     }
 
 }

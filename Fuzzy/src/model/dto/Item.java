@@ -23,7 +23,7 @@ public class Item {
 
     private HashMap<String,Integer> rank;
 
-    public Item(int idItem, int action, int adventure, int animation, int biography, int comedy, int crime, int documentary, int drama, int family, int fantasy, int film_noir, int gameshow, int history, int horror, int music, int musical, int mistery, int news, int reality_tv, int romance, int science_fiction, int sport, int talk_show, int thriller, int war, int western) {
+    public Item(int idItem, int action, int adventure, int animation, int biography, int comedy, int crime, int documentary, int drama, int family, int fantasy, int film_noir, int gameshow, int history, int horror, int music, int musical, int mystery, int news, int reality_tv, int romance, int science_fiction, int sport, int talk_show, int thriller, int war, int western) {
         this.idItem=idItem;
         this.rank= new HashMap<String, Integer>();
         rank.put("action", action);
@@ -36,19 +36,19 @@ public class Item {
         rank.put("drama", drama);
         rank.put("family", family);
         rank.put("fantasy", fantasy);
-        rank.put("film_noir", film_noir);
+        rank.put("film-noir", film_noir);
         rank.put("gameshow", gameshow);
         rank.put("history", history);
         rank.put("horror", horror);
         rank.put("music", music);
         rank.put("musical", musical);
-        rank.put("mistery", mistery);
+        rank.put("mystery", mystery);
         rank.put("news", news);
-        rank.put("reality_tv", reality_tv);
+        rank.put("reality-tv", reality_tv);
         rank.put("romance", romance);
-        rank.put("science_fiction", science_fiction);
+        rank.put("sci-fi", science_fiction);
         rank.put("sport",sport);
-        rank.put("talk_show", talk_show);
+        rank.put("talk-show", talk_show);
         rank.put("thriller", thriller);
         rank.put("war", war);
         rank.put("western", western);
