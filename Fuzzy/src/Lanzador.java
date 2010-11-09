@@ -1,4 +1,5 @@
 import control.Fuzzifier;
+import control.Similarity;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -44,13 +45,12 @@ public class Lanzador {
                     i++;
                 }
 		System.out.println(items.size());*/
-                System.out.println("total "+items.get(0).total());
-                Fuzzifier ff = new Fuzzifier();
-                HashMap<String,Double> rank =  ff.getFuzzyVector(items.get(0));
-                System.out.println(rank.toString());
-
-                
-
+                //System.out.println("total "+items.get(0).total());
+                //Fuzzifier ff = new Fuzzifier();
+                //HashMap<String,Double> rank =  ff.getFuzzyVector(items.get(0));
+                //System.out.println(rank.toString());
+                Similarity ss = new Similarity();
+                System.out.println(ss.cosineItemSimilarity(items.get(0),items.get(1)));
 
 	}
 
