@@ -14,6 +14,7 @@ import model.DDBB.FilmDAO;
 import model.DDBB.ItemDAO;
 import model.DDBB.RateDAO;
 import model.dto.Film;
+import model.dto.Item;
 
 /**
  *
@@ -46,5 +47,10 @@ public class DataMining {
         RateDAO rateDAO = MySQLFactory.getRateDAO();
 
         return rateDAO.Rate(idUser, idFilm).getRank();
+    }
+    public Item getItem(int idItem) throws SQLException{
+        DAOFactory MySQLFactory = DAOFactory.getDAOFactory(DAOFactory.MySQL);
+        ItemDAO itemDAO = MySQLFactory.getItemDAO();
+        return itemDAO.getItem(idItem);
     }
 }
