@@ -34,6 +34,11 @@ public class DataMining {
         
     return filmDAO.getNotRankedFilms(rateDAO.getRatesUser(idUser));
     }
+    public boolean exits(int idFilm) throws SQLException{
+        DAOFactory MySQLFactory = DAOFactory.getDAOFactory(DAOFactory.MySQL);
+        FilmDAO filmDAO = MySQLFactory.getFilmDAO();
+        return filmDAO.exists(idFilm);
+    }
     public ArrayList<Film> getRankedListGreaterThan(int idUser, int rate) throws SQLException{
         DAOFactory MySQLFactory = DAOFactory.getDAOFactory(DAOFactory.MySQL);
         RateDAO rateDAO = MySQLFactory.getRateDAO();

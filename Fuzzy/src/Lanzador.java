@@ -41,13 +41,24 @@ public class Lanzador {
                // System.out.println("asdsfd");
                // ArrayList<Item> items = itemDAO.getItems();
                 DataMining data = new DataMining();
-                ArrayList<Film> films;
+                if(data.exits(1)){
+                    System.out.println("Exists film 1");
+                } else{
+                    System.out.println("Doesn't Exists film 1");
+                }
+                if(data.exits(14)){
+                    System.out.println("Exists film 14");
+                } else{
+                    System.out.println("Doesn't Exists film 14");
+                }
+
+                /*ArrayList<Film> films;
                 films = data.NotRankedList(1);
 
                 for(int i=0;i<films.size();i++){
                     System.out.println("Pinicula: "+ films.get(i).getTitle()+" Rate="+data.getRate(1, films.get(i).getIdFilm()));
                     System.out.println("Item="+data.getItem(films.get(i).getIdItem()).getIdItem());
-                }
+                }*/
                 /*int i=0;
                 while(i<items.size()){
                     System.out.println(items.get(i).getIdItem());

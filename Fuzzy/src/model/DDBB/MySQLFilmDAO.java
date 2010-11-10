@@ -94,4 +94,21 @@ public class MySQLFilmDAO extends MySQLDaoFactory implements FilmDAO{
 	    return list;
     }
 
+    public boolean exists(int idFilm) throws SQLException {
+        boolean exit;
+        String sentence="select * from film where idFilm="+idFilm+";";
+        Connection conexion = getConnection();
+        Statement sentencia = conexion.createStatement();
+	    ResultSet rs = sentencia.executeQuery( sentence );
+            if (rs.next()){
+                exit = true;
+            } else {
+                exit = false;
+            }
+
+	    sentencia.close();
+	    closeConnection(conexion);
+         return exit;
+    }
+
 }
