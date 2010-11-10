@@ -16,7 +16,7 @@ import model.dto.Item;
  */
 public class Similarity {
 
-    public double cosineItemSimilarity(Item i,Item j){
+    public static double cosineItemSimilarity(Item i,Item j){
         HashMap<String,Double> a= Fuzzifier.getFuzzyVector(i);
         HashMap<String,Double> b= Fuzzifier.getFuzzyVector(j);
         double denominator =0;
