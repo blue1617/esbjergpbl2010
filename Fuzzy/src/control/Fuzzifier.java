@@ -15,6 +15,9 @@ import model.dto.Item;
  * @author daniele
  */
 public class Fuzzifier {
+    
+    private static final int MAX = 10;
+    private static final int MIN = 1;
 
     public static HashMap<String,Double> getFuzzyVector(Item i){
 
@@ -83,6 +86,12 @@ public class Fuzzifier {
         double alpha = 1.2;
         double denominator = Math.pow(2,Math.sqrt(alpha*total*(position-1)));
         return position/denominator;
+    }
+    
+    
+    
+    public static double fuzzifyRate(int rate){
+        return (rate-MIN)/(MAX-MIN);
     }
 
 }
