@@ -46,6 +46,7 @@ public class Lanzador {
 
                 for(int i=0;i<films.size();i++){
                     System.out.println("Pinicula: "+ films.get(i).getTitle()+" Rate="+data.getRate(1, films.get(i).getIdFilm()));
+                    System.out.println("Item="+data.getItem(films.get(i).getIdItem()).getIdItem());
                 }
                 /*int i=0;
                 while(i<items.size()){

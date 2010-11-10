@@ -16,6 +16,7 @@ import java.util.ArrayList;
  */
 public interface ItemDAO {
     public ArrayList<Item> getItems() throws SQLException;
+    public Item getItem(int idItem) throws SQLException;
     public void insertItem(MovieHTML mov) throws SQLException;
 
 }
