@@ -38,12 +38,58 @@ public class MySQLRateDAO extends MySQLDaoFactory implements RateDAO{
 	    return list;
     }
 
+    public ArrayList<Rate> getTaresUserGreater(int idUser, int rate2) throws SQLException {
+        String sentence="select * from Rate where idUser="+idUser+" and rate>"+rate2+";";
+        ArrayList<Rate> list = new ArrayList<Rate>();
+        Connection conexion = getConnection();
+        Statement sentencia = conexion.createStatement();
+	    ResultSet rs = sentencia.executeQuery( sentence );
+
+	    while (rs.next()) {
+		  Rate rate = new Rate( rs.getInt("idFilm"), rs.getInt("idUser"),
+					rs.getInt( "rate" ));
+                  list.add(rate);
+	    }
+	    sentencia.close();
+	    closeConnection(conexion);
+	    return list;
+    }
+
     public ArrayList<Rate> getRatesFilm(int idFilm) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public Rate getRate(int idUser, int idFilm) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public int getRate(int idUser, int idFilm) throws SQLException {
+        String sentence="select * from Rate where idUser="+idUser+" and idFilm="+idFilm+";";
+        Connection conexion = getConnection();
+        Statement sentencia = conexion.createStatement();
+	ResultSet rs = sentencia.executeQuery( sentence );
+        
+		  Rate retu = new Rate( rs.getInt("idFilm"), rs.getInt("idUser"),
+					rs.getInt( "rate" ));
+                
+
+	    sentencia.close();
+	    closeConnection(conexion);
+	    return retu.getRank();
     }
+
+    public Rate Rate(int idUser, int idFilm) throws SQLException {
+        String sentence="select * from Rate where idUser="+idUser+" and idFilm="+idFilm+";";
+        Connection conexion = getConnection();
+        Statement sentencia = conexion.createStatement();
+	    ResultSet rs = sentencia.executeQuery( sentence );
+            Rate retu= new Rate(0,0,0);
+                  while (rs.next()) {
+		  Rate rate = new Rate( rs.getInt("idFilm"), rs.getInt("idUser"),
+					rs.getInt( "rate" ));
+                  retu = rate;
+               }
+	    sentencia.close();
+	    closeConnection(conexion);
+	    return retu;
+    }
+
+
 
 }

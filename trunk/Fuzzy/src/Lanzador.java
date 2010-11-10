@@ -42,9 +42,10 @@ public class Lanzador {
                // ArrayList<Item> items = itemDAO.getItems();
                 DataMining data = new DataMining();
                 ArrayList<Film> films;
-                films = data.NotRankedList(2);
+                films = data.getRankedListGreaterThan(1,5);
+
                 for(int i=0;i<films.size();i++){
-                    System.out.println("Pinicula: "+ films.get(i).getTitle());
+                    System.out.println("Pinicula: "+ films.get(i).getTitle()+" Rate="+data.getRate(1, films.get(i).getIdFilm()));
                 }
                 /*int i=0;
                 while(i<items.size()){

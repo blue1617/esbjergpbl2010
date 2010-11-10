@@ -67,4 +67,31 @@ public class MySQLFilmDAO extends MySQLDaoFactory implements FilmDAO{
 	    return list;
     }
 
+    public ArrayList<Film> getRankedFilms(ArrayList<Rate> rates) throws SQLException {
+        String sentence="select * from film where ";
+        String sentence2="";
+        ArrayList<Film> list = new ArrayList<Film>();
+        for(int i=0;i<rates.size();i++){
+            if(i==0){
+                sentence2=sentence2+"idFilm="+rates.get(i).getIdFilm();
+            } else{
+                sentence2=sentence2+" or "+"idFilm="+rates.get(i).getIdFilm();
+            }
+        }
+        sentence=sentence+sentence2+";";
+        System.out.println(sentence);
+        Connection conexion = getConnection();
+        Statement sentencia = conexion.createStatement();
+	    ResultSet rs = sentencia.executeQuery( sentence );
+
+	    while (rs.next()) {
+		  Film film = new Film( rs.getInt("idFilm"), rs.getInt("idItem"),
+					rs.getString( "Title" ), rs.getString( "Year" ));
+                  list.add(film);
+	    }
+	    sentencia.close();
+	    closeConnection(conexion);
+	    return list;
+    }
+
 }
