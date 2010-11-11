@@ -7,15 +7,10 @@ public class NextPage extends JFrame {
 
     public NextPage() {
 
-        setSize(300, 200);
+        setSize(1200, 600);
         setTitle("Simple");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
    }
 
-    public static void main(String[] args) {
-
-        NextPage simple = new NextPage();
-        simple.setVisible(true);
-
-    }
+    
 }
