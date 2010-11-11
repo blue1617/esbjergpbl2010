@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import model.DDBB.*;
 import model.dto.Film;
 import model.dto.Item;
+import model.dto.Rate;
 import model.dto.User;
 
 
@@ -20,27 +21,31 @@ public class Lanzador {
 	 * @param args
 	 */
 	public static void main(String[] args) throws SQLException {
-		// create the required DAO Factory
-		//DAOFactory MySQLFactory = DAOFactory.getDAOFactory(DAOFactory.MySQL);
+		DAOFactory MySQLFactory = DAOFactory.getDAOFactory(DAOFactory.MySQL);
 
-               //   System.out.println("asdsfd");
         
-		/*UserDAO userDAO = MySQLFactory.getUserDAO();
+		UserDAO userDAO = MySQLFactory.getUserDAO();
+                RateDAO rateDAO = MySQLFactory.getRateDAO();
                 System.out.println("asdsfd");
                 ArrayList<User> use = userDAO.getUsers();
                 System.out.println("User in database:");
-                int i=0;
-                while(i<use.size()){
-                    System.out.println(use.get(i).name+" "+use.get(i).surname);
-                    i++;
+                                
+                for(int i=0; i<use.size();i++){
+                   ArrayList<Rate> rate = rateDAO.getRatesUser(use.get(i).getIdUser());
+                   if(rate.size()!=0){
+                       System.out.println("EXISTE EL USUARIO "+use.get(i).getIdUser());
+                   } else{
+                       System.out.println("NO EXISTE EL USUARIO "+use.get(i).getIdUser());
+                   }
                 }
+
 		System.out.println(use.size());
-                 */
+                 
 
               //  ItemDAO itemDAO = MySQLFactory.getItemDAO();
                // System.out.println("asdsfd");
                // ArrayList<Item> items = itemDAO.getItems();
-                DataMining data = new DataMining();
+               /* DataMining data = new DataMining();
                 if(data.exits(1)){
                     System.out.println("Exists film 1");
                 } else{
@@ -50,7 +55,7 @@ public class Lanzador {
                     System.out.println("Exists film 14");
                 } else{
                     System.out.println("Doesn't Exists film 14");
-                }
+                }*!
 
                 /*ArrayList<Film> films;
                 films = data.NotRankedList(1);

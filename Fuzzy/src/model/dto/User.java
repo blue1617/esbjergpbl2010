@@ -14,20 +14,36 @@ public class User implements java.io.Serializable{
     public int idItem;
     public String name;
     public String surname;
-    public String birthday;
-    public String country;
+    public String age;
+    public String occupation;
     public String sex;
     public String password;
 
-    public User(int idUse, int idIte, String nam, String surnam, String birthda, String countr, String se, String pass){
+    public User(int idUse, int idIte, String nam, String surnam, String ag, String occupa, String se, String pass){
         idUser = idUse;
         idItem = idIte;
         name = nam;
         surname = surnam;
-        birthday = birthda;
-        country = countr;
+        age = ag;
+        occupation = occupa;
         sex = se;
         password = pass;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public String getOccupation() {
+        return occupation;
+    }
+
+    public void setOccupation(String occupation) {
+        this.occupation = occupation;
     }
 
     public String getPassword() {
@@ -36,22 +52,6 @@ public class User implements java.io.Serializable{
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(String birthday) {
-        this.birthday = birthday;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
     }
 
     public int getIdItem() {
