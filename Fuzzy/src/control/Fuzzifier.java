@@ -91,7 +91,13 @@ public class Fuzzifier {
     
     
     public static double fuzzifyRate(int rate){
-        return (rate-MIN)/(MAX-MIN);
+        System.out.println("");
+        double a = rate-MIN;
+        double result = a /(MAX-MIN);
+
+         System.out.println("the fuzzified rate is: " + result);
+
+         return result;
     }
 
 }
