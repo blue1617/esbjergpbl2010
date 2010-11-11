@@ -1,5 +1,9 @@
 package view;
 
+import control.DataMining;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -34,19 +38,22 @@ class Login extends JFrame implements ActionListener
   }
    public void actionPerformed(ActionEvent ae)
   {
+    DataMining data = new DataMining();
     String value1=text1.getText();
     String value2=text2.getText();
-        if (value1.equals("roseindia") && value2.equals("roseindia")) {
-    NextPage page=new NextPage();
-    page.setVisible(true);
-    JLabel label = new JLabel("Welcome:"+value1);
-        page.getContentPane().add(label);
-  }
-    else{
-      System.out.println("enter the valid username and password");
-      JOptionPane.showMessageDialog(this,"Incorrect login or password",
-            "Error",JOptionPane.ERROR_MESSAGE);
-  }
+        try {
+            if (data.validate(value1, value2)) {
+                NextPage page = new NextPage();
+                page.setVisible(true);
+                JLabel label = new JLabel("Welcome:" + value1);
+                page.getContentPane().add(label);
+            } else {
+                System.out.println("enter the valid username and password");
+                JOptionPane.showMessageDialog(this, "Incorrect login or password", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
 }
 }
  class LoginDemo
