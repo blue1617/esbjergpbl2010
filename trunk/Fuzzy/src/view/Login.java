@@ -47,6 +47,7 @@ class Login extends JFrame implements ActionListener
                 page.setVisible(true);
                 JLabel label = new JLabel("Welcome:" + value1);
                 page.getContentPane().add(label);
+                this.setVisible(false);
             } else {
                 System.out.println("enter the valid username and password");
                 JOptionPane.showMessageDialog(this, "Incorrect login or password", "Error", JOptionPane.ERROR_MESSAGE);
