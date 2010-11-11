@@ -16,7 +16,7 @@ public class MySQLUserDAO extends MySQLDaoFactory implements UserDAO{
 	    while (rs.next()) {
 		  User user = new User( rs.getInt("idUser"), rs.getInt("idItem"),
 					rs.getString( "name" ), rs.getString( "surname" ),
-					rs.getString( "birthday" ), rs.getString("country"), rs.getString("sex"), rs.getString("password"));
+					rs.getString( "age" ), rs.getString("occupation"), rs.getString("sex"), rs.getString("password"));
                   list.add(user);
 	    }
 	    sentencia.close();
@@ -57,6 +57,40 @@ public class MySQLUserDAO extends MySQLDaoFactory implements UserDAO{
         sentencia.close();
 	closeConnection(conexion);
         return user;
+    }
+
+    public ArrayList<User> getUsersNotRanked() throws SQLException {
+        ArrayList<User> list = new ArrayList<User>();
+            Connection conexion = getConnection();
+            String sentence = "select * from user inner join rate where user.idUser != rate.idUser;";
+            Statement sentencia = conexion.createStatement();
+	    ResultSet rs = sentencia.executeQuery( sentence );
+
+	    while (rs.next()) {
+		  User user = new User( rs.getInt("idUser"), rs.getInt("idItem"),
+					rs.getString( "name" ), rs.getString( "surname" ),
+					rs.getString( "age" ), rs.getString("country"), rs.getString("sex"), rs.getString("password"));
+                  list.add(user);
+	    }
+	    sentencia.close();
+	    closeConnection(conexion);
+	    return list;
+    }
+
+    public void dropUser(int idUser) throws SQLException {
+        Connection conexion = getConnection();
+        String sentence = "DELETE FROM USER WHERE idUser="+idUser+";";
+        System.out.println(sentence);
+        Statement sentencia = conexion.createStatement();
+        int delete = sentencia.executeUpdate(sentence);
+        if(delete == 1){
+          System.out.println("Row is deleted.");
+        }
+        else{
+          System.out.println("Row is not deleted.");
+        }
+        sentencia.close();
+	closeConnection(conexion);
     }
 
  

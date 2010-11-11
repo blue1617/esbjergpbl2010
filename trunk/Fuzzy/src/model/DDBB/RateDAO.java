@@ -19,4 +19,5 @@ public interface RateDAO {
     public int getRate(int idUser, int idFilm) throws SQLException;
     public Rate Rate(int idUser, int idFilm) throws SQLException;
     public ArrayList<Rate> getTaresUserGreater(int idUser, int rate) throws SQLException;
+
 }
