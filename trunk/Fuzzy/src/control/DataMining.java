@@ -13,6 +13,7 @@ import model.DDBB.DAOFactory;
 import model.DDBB.FilmDAO;
 import model.DDBB.ItemDAO;
 import model.DDBB.RateDAO;
+import model.DDBB.UserDAO;
 import model.dto.Film;
 import model.dto.Item;
 
@@ -57,5 +58,10 @@ public class DataMining {
         DAOFactory MySQLFactory = DAOFactory.getDAOFactory(DAOFactory.MySQL);
         ItemDAO itemDAO = MySQLFactory.getItemDAO();
         return itemDAO.getItem(idItem);
+    }
+    public boolean validate(String name, String password) throws SQLException{
+        DAOFactory MySQLFactory = DAOFactory.getDAOFactory(DAOFactory.MySQL);
+        UserDAO userDAO = MySQLFactory.getUserDAO();
+        return userDAO.validate(name, password);
     }
 }

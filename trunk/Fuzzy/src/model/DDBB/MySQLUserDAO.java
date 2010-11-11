@@ -25,16 +25,25 @@ public class MySQLUserDAO extends MySQLDaoFactory implements UserDAO{
   }
 
     public boolean validate(String name, String password) throws SQLException {
+        boolean retu=false;
+        String nam="", pass="";
         Connection conexion = getConnection();
         String sentence = "SELECT * FROM USER WHERE NAME='"+name+"';";
+        System.out.println(sentence);
         Statement sentencia = conexion.createStatement();
         ResultSet rs = sentencia.executeQuery(sentence);
-        sentencia.close();
-	    closeConnection(conexion);
-        if((rs.getString("name").equals(name))&&(rs.getString("password").equals(password)))
-            return true;
+        while (rs.next()) {
+            nam=rs.getString("name");
+        pass=rs.getString("password");
+        
+        if((nam.equals(name))&&(pass.equals(password)))
+            retu = true;
         else
-            return false;
+            retu = false;
+	    }
+        sentencia.close();
+	closeConnection(conexion);
+        return retu;
     }
 
     public User getUser(String name) throws SQLException {
