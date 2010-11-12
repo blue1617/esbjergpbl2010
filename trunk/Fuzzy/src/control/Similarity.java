@@ -40,4 +40,49 @@ public class Similarity {
         return numerator/denominator;
     }
 
+    private static double minkowskiDistance( Item i, Item j)
+    {
+        double sum = 0;
+        HashMap<String,Double> a= Fuzzifier.getFuzzyVector(i);
+        HashMap<String,Double> b= Fuzzifier.getFuzzyVector(j);
+
+        Iterator it =a.entrySet().iterator();
+        Iterator it2 =b.entrySet().iterator();
+
+        while(it.hasNext()){
+            Entry<String,Double> element1 = (Entry<String, Double>) it.next();
+            Entry<String,Double> element2 = (Entry<String, Double>) it2.next();
+            sum = sum + Math.pow(element1.getValue()-element2.getValue(),2);
+
+        }
+
+        return Math.sqrt(sum);
+        
+    }
+
+    //we are 50% sure this is correctly calculated
+    //fuzzy theoretic proximity , Minokowski distance based
+    public static double fuzzyTheoreticProximity(Item i, Item j)
+    {
+        double sum =0 ;
+        double d = minkowskiDistance(i, j);
+
+        HashMap<String,Double> a= Fuzzifier.getFuzzyVector(i);
+        HashMap<String,Double> b= Fuzzifier.getFuzzyVector(j);
+
+        Iterator it =a.entrySet().iterator();
+        Iterator it2 =b.entrySet().iterator();
+
+        while(it.hasNext()){
+            Entry<String,Double> element1 = (Entry<String, Double>) it.next();
+            Entry<String,Double> element2 = (Entry<String, Double>) it2.next();
+            double e =  element1.getValue() > element2.getValue() ?  element1.getValue():element2.getValue();
+            
+            sum = sum + e;
+        }
+        //System.out.println("the sum is: " + sum);
+        //System.out.println("the similarity 2 is equal to: " + (1 - (d/sum)));
+        return  1 - (d/sum);
+    }
+
 }

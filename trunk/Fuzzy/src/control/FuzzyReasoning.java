@@ -32,6 +32,10 @@ public class FuzzyReasoning {
             double a=Fuzzifier.fuzzifyRate(data.getRate(idUser,element.getIdFilm()));
             double b=Similarity.cosineItemSimilarity(j, data.getItem(element.getIdItem()));
             System.out.println("the similarity: " + b);
+
+            double c=Similarity.fuzzyTheoreticProximity(j,data.getItem(element.getIdItem()));
+            System.out.println("the minkowsky similarity is: " + c);
+            
             sum = sum + (a*b);
         }
         return sum;
