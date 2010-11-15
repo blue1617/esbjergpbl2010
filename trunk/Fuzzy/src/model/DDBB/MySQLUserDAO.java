@@ -53,7 +53,7 @@ public class MySQLUserDAO extends MySQLDaoFactory implements UserDAO{
         ResultSet rs = sentencia.executeQuery(sentence);
         User user = new User( rs.getInt("idUser"), rs.getInt("idItem"),
 					rs.getString( "name" ), rs.getString( "surname" ),
-					rs.getString( "birthday" ), rs.getString("country"), rs.getString("sex"), rs.getString("password"));
+					rs.getString( "age" ), rs.getString("occupation"), rs.getString("sex"), rs.getString("password"));
         sentencia.close();
 	closeConnection(conexion);
         return user;

@@ -20,7 +20,25 @@ import model.dto.User;
 public class MySQLFilmDAO extends MySQLDaoFactory implements FilmDAO{
 
     public ArrayList<Film> getFilms() throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet.");
+
+         String sentence="select * from film;";
+
+        ArrayList<Film> list = new ArrayList<Film>();
+
+
+        Connection conexion = getConnection();
+        Statement sentencia = conexion.createStatement();
+	    ResultSet rs = sentencia.executeQuery( sentence );
+
+	    while (rs.next()) {
+		  Film film = new Film( rs.getInt("idFilm"), rs.getInt("idItem"),
+					rs.getString( "Title" ), rs.getString( "Year" ));
+                  list.add(film);
+	    }
+	    sentencia.close();
+	    closeConnection(conexion);
+	    return list;
+       
     }
 
     public Film getFilm(String film) throws SQLException {
