@@ -44,7 +44,7 @@ public class MySQLItemDAO extends MySQLDaoFactory implements ItemDAO {
                                     rs.getInt("horror"),
                                     rs.getInt("music"),
                                     rs.getInt("musical"),
-                                    rs.getInt("mistery"),
+                                    rs.getInt("mystery"),
                                     rs.getInt("news"),
                                     rs.getInt("reality-tv"),
                                     rs.getInt("romance"),

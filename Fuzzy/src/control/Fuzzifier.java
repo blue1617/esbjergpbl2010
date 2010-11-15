@@ -16,7 +16,7 @@ import model.dto.Item;
  */
 public class Fuzzifier {
     
-    private static final int MAX = 10;
+    private static final int MAX = 5;
     private static final int MIN = 1;
 
     public static HashMap<String,Double> getFuzzyVector(Item i){
@@ -91,13 +91,35 @@ public class Fuzzifier {
     
     
     public static double fuzzifyRate(int rate){
-        System.out.println("");
-        double a = rate-MIN;
-        double result = a /(MAX-MIN);
+       double result;
+       if(rate == 0)
+       {
+           result = 0;
+        }
+        else
+            {
+            double a = rate-MIN;
+            result = a /(MAX-MIN);
 
-         System.out.println("the fuzzified rate is: " + result);
-
+            //   System.out.println("the fuzzified rate is: " + result);
+            }
          return result;
+    }
+
+    //the p minus from the paper
+    public static double complementFuzzifyRate(int rate)
+    {
+        double result = 0;
+        if(rate == 0)
+        {
+            result = 0;
+        }
+     else
+            {
+            double a = MAX - rate;
+            result = a/(MAX - MIN);
+            }
+        return result;
     }
 
 }

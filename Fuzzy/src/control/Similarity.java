@@ -36,7 +36,7 @@ public class Similarity {
         }
 
         denominator = Math.sqrt(sum1)*Math.sqrt(sum2);
-
+        //System.out.println("similarity between" + i.getIdItem()+" and " + j.getIdItem()+ "is: " + numerator/denominator);
         return numerator/denominator;
     }
 
