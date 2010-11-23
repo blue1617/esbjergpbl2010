@@ -30,6 +30,10 @@ public class User implements java.io.Serializable{
         password = pass;
     }
 
+    public User() {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
     public String getAge() {
         return age;
     }

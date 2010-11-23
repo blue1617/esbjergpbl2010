@@ -5,10 +5,22 @@
 
 package control;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeMap;
+import java.util.TreeSet;
 import model.dto.Item;
+import model.dto.User;
 
 /**
  *
@@ -84,5 +96,65 @@ public class Similarity {
         //System.out.println("the similarity 2 is equal to: " + (1 - (d/sum)));
         return  1 - (d/sum);
     }
+
+    public static ArrayList<User> getNeighbourhood(int idUser,ArrayList<User> allUsers) throws SQLException{
+        ArrayList<User> neighbourhood = new ArrayList<User>();
+        HashMap<User,Double> rankedUsers = new HashMap<User, Double>();
+        DataMining data = new DataMining();
+        //get all the rated movie from idUser
+        HashMap<Integer,Integer> IdsTarget = data.getAllRatedFilms(idUser);
+        //while allUsers
+        Iterator<User> it = allUsers.iterator();
+        while(it.hasNext()){
+            User currentUser = it.next();
+            double sum = 0;
+            //get all the rated movie from current user
+            HashMap<Integer,Integer> ids = data.getAllRatedFilms(currentUser.getIdUser());
+            //only on the common rated movies
+            Set<Integer> dunno = ids.keySet();
+            dunno.retainAll(IdsTarget.keySet());
+            //do euclidian similarity
+            Iterator<Integer> itDunno = dunno.iterator();
+            while(itDunno.hasNext()){
+                int idMovie = itDunno.next();
+                double a = Fuzzifier.fuzzifyRate(IdsTarget.get(idMovie));
+                double b = Fuzzifier.fuzzifyRate(ids.get(idMovie));
+                double plus = Math.pow((a-b),2);
+                sum = sum + plus;
+            }
+            double score = Math.sqrt(sum);
+            rankedUsers.put(currentUser,score);
+        }
+        System.out.println("one:"+rankedUsers.size()+"\n"+rankedUsers);
+        sortOutTen(rankedUsers);
+        return neighbourhood;
+    }
+
+
+    private static ArrayList<User> sortOutTen(HashMap<User,Double> rankedUsers){
+        ArrayList<User> sortedUsers = new ArrayList<User>();
+        List mapValues = new ArrayList(rankedUsers.values());
+        Collections.sort(mapValues);
+        System.out.println("fuck you mofo:"+mapValues.size()+"\n "+mapValues);
+        /*Iterator<Entry<Integer, User>> iterator = rankedUsers.entrySet().iterator();
+        while(iterator.hasNext()){
+
+            User aux = new User();
+            if(iterator.next().)
+   
+        }
+        }*/
+
+        //Map<Double,User> sortedMap = new TreeMap<Double, User>(rankedUsers);
+        //System.out.println("two:"+sortedMap+"\n"+sortedMap);
+        return sortedUsers;
+    }
+
+
+
+
+
+
+    
 
 }
