@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 
 public class MySQLDaoFactory extends DAOFactory {
   public static final String DRIVER="com.mysql.jdbc.Driver";
-  public static final String DBURL="jdbc:mysql://localhost/fuzzy?user=root&password=root";
+  public static final String DBURL="jdbc:mysql://localhost/mydb?user=root&password=narkotek";
   public static Statement statement = null;
   public static Connection con = null;
 
@@ -14,7 +14,7 @@ public class MySQLDaoFactory extends DAOFactory {
   public Connection getConnection() {
             Connection conexion;
             try {
-            System.out.println("akiii");
+            //System.out.println("akiii");
             Class.forName(DRIVER);
             con = DriverManager.getConnection(DBURL);
             }

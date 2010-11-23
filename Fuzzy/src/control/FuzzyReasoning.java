@@ -32,11 +32,11 @@ public class FuzzyReasoning {
             Film element = (Film) it.next();
             double a=Fuzzifier.fuzzifyRate(data.getRate(idUser,element.getIdFilm()));
             double b=Similarity.cosineItemSimilarity(j, data.getItem(element.getIdItem()));
-            System.out.println("the similarity: between "+j.getIdItem() + " and "+data.getItem(element.getIdFilm()) + b);
+            /*System.out.println("the similarity: between "+j.getIdItem() + " and "+data.getItem(element.getIdFilm()) + b);
 
             double c=Similarity.fuzzyTheoreticProximity(j,data.getItem(element.getIdItem()));
             System.out.println("the minkowsky similarity is: " + c);
-            
+            */
             sum = sum + (a*b);
         }
         return sum;
@@ -58,7 +58,7 @@ public class FuzzyReasoning {
                 max = min;
            else
                max = max<min ? max : min;
-            System.out.println("the similarity: " + max);
+            //System.out.println("the similarity: " + max);
      
         }
         return max;
@@ -140,7 +140,7 @@ public class FuzzyReasoning {
 
         }
 
-        System.out.println("the r3 is: " + result);
+        //System.out.println("the r3 is: " + result);
         return result;
     }
 

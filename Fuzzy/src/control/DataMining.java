@@ -7,6 +7,7 @@ package control;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.DDBB.DAOFactory;
@@ -16,6 +17,7 @@ import model.DDBB.RateDAO;
 import model.DDBB.UserDAO;
 import model.dto.Film;
 import model.dto.Item;
+import model.dto.Rate;
 
 /**
  *
@@ -63,5 +65,18 @@ public class DataMining {
         DAOFactory MySQLFactory = DAOFactory.getDAOFactory(DAOFactory.MySQL);
         UserDAO userDAO = MySQLFactory.getUserDAO();
         return userDAO.validate(name, password);
+    }
+
+    public HashMap<Integer,Integer> getAllRatedFilms(int idUser) throws SQLException{
+        DAOFactory MySQLFactory = DAOFactory.getDAOFactory(DAOFactory.MySQL);
+        RateDAO rateDAO = MySQLFactory.getRateDAO();
+        ArrayList<Rate> rates= rateDAO.getRatesUser(idUser);
+        HashMap<Integer,Integer> whateva = new HashMap<Integer, Integer>();
+        for(int i=0; i<rates.size();i++){
+            Rate rate = rates.get(i);
+            whateva.put(rate.getIdFilm(),rate.getRank());
+        }
+        return whateva;
+
     }
 }

@@ -1,6 +1,8 @@
 import control.DataMining;
 import control.Fuzzifier;
+import control.FuzzyReasoning;
 import control.Similarity;
+import java.lang.Double;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,43 +26,49 @@ public class Lanzador {
 		DAOFactory MySQLFactory = DAOFactory.getDAOFactory(DAOFactory.MySQL);
 
         
-		UserDAO userDAO = MySQLFactory.getUserDAO();
-                RateDAO rateDAO = MySQLFactory.getRateDAO();
-                System.out.println("asdsfd");
-                ArrayList<User> use = userDAO.getUsers();
-                System.out.println("User in database:");
-                                
-                for(int i=0; i<use.size();i++){
-                   ArrayList<Rate> rate = rateDAO.getRatesUser(use.get(i).getIdUser());
-                   if(rate.size()!=0){
-                       System.out.println("EXISTE EL USUARIO "+use.get(i).getIdUser());
-                   } else{
-                       System.out.println("NO EXISTE EL USUARIO "+use.get(i).getIdUser());
-                   }
-                }
-
-		System.out.println(use.size());
+		
                  
 
-              //  ItemDAO itemDAO = MySQLFactory.getItemDAO();
+                //ItemDAO itemDAO = MySQLFactory.getItemDAO();
+                //FilmDAO filmDAO = MySQLFactory.getFilmDAO();
+                UserDAO userDAO = MySQLFactory.getUserDAO();
+                ArrayList<User> allUsers = userDAO.getUsers();
+                //ArrayList<Film> allMovies = filmDAO.getFilms();
                // System.out.println("asdsfd");
-               // ArrayList<Item> items = itemDAO.getItems();
-               /* DataMining data = new DataMining();
-                if(data.exits(1)){
-                    System.out.println("Exists film 1");
-                } else{
-                    System.out.println("Doesn't Exists film 1");
+                //ArrayList<Item> items = itemDAO.getItems();
+                //System.out.println("total items number: "+items.size());
+                //DataMining data = new DataMining();
+
+                Similarity.getNeighbourhood(13,allUsers);
+                //ArrayList<Film> targetMovies = data.NotRankedList(13);
+                //ArrayList<Film> ratedMovies = data.getRankedListGreaterThan(13,3);
+                //System.out.println("size-> "+ratedMovies.size());
+                //FuzzyReasoning reasoning = new FuzzyReasoning();
+                //Iterator<Film> it = targetMovies.iterator();
+                //System.out.println("Movies user number 36 has rated: ");
+                //FuzzyReasoning brain = new FuzzyReasoning();
+                //System.out.println("similarity user ->"+brain.r3(1,2, allMovies));
+                /*ArrayList<Double> rankR1 = new ArrayList<Double>();
+                double maxR1 = 0;
+                while(it.hasNext()){
+                    Film targetFilm = it.next();
+                    //System.out.println(targetFilm.getTitle() + " --with rate-- "+data.getRate(36,targetFilm.getIdFilm()));
+                    double a= brain.r1(data.getItem(targetFilm.getIdItem()), ratedMovies, 13);
+                    if(a > maxR1)
+                        maxR1 = a;
+                    rankR1.add(a);
+                    
                 }
-                if(data.exits(14)){
-                    System.out.println("Exists film 14");
-                } else{
-                    System.out.println("Doesn't Exists film 14");
-                }*!
 
-                /*ArrayList<Film> films;
-                films = data.NotRankedList(1);
+                for(int i=0; i<rankR1.size();i++){
+                    System.out.println("previous value ->" + rankR1.get(i));
+                    double temp= rankR1.get(i);
+                    rankR1.set(i, temp/maxR1);
+                    System.out.println("current value ->" + rankR1.get(i));
+                    System.out.println("");
+                }*/
 
-                for(int i=0;i<films.size();i++){
+                /*for(int i=0;i<films.size();i++){
                     System.out.println("Pinicula: "+ films.get(i).getTitle()+" Rate="+data.getRate(1, films.get(i).getIdFilm()));
                     System.out.println("Item="+data.getItem(films.get(i).getIdItem()).getIdItem());
                 }*/

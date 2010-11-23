@@ -5,11 +5,17 @@
 
 package imdb;
 
+import control.DataMining;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.ByteArrayInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.Reader;
 import java.io.StringReader;
 import java.lang.reflect.Array;
@@ -163,10 +169,64 @@ public class GenreClient {
 	}
 
 
+        public void eraseRows(String filename) throws IOException, SQLException{
+            DataMining data = new DataMining();
+            String outputFile = "u.data.NEW";
+            BufferedWriter out = new BufferedWriter(new FileWriter(outputFile));
+            BufferedReader fh = new BufferedReader(new FileReader(filename));
+            String s;
+            while ((s=fh.readLine())!=null){
+                String f[] = s.split("\t");
+                //if f[1] is not in our db
+                if(data.exits(Integer.parseInt(f[1]))){
+                    out.write(s+"\n");
+                }
+            }
+            out.flush();
+            out.close();
+            fh.close();
 
-	public static void main(String[] args) throws XPathExpressionException, IOException, InterruptedException{
+        }
+
+        public void writeSql(String filename) throws FileNotFoundException, IOException{
+            String outputFile = "rate.sql";
+            BufferedWriter out = new BufferedWriter(new FileWriter(outputFile));
+            out.write("INSERT INTO `rate` (`idFilm`, `idUser`, `rate`) VALUES\n");
+            BufferedReader fh = new BufferedReader(new FileReader(filename));
+            String s;
+            while ((s=fh.readLine())!=null){
+                String f[] = s.split("\t");
+                out.write("("+f[0]+","+f[1]+","+f[2]+"),\n");
+
+            }
+            out.flush();
+            out.close();
+            fh.close();
+        }
+
+        public void writeUserSql(String filename) throws IOException{
+            String outputFile = "user.sql";
+            BufferedWriter out = new BufferedWriter(new FileWriter(outputFile));
+            out.write("INSERT INTO `user` (`idUser`, `idItem`, `sex`, `password`, `name`, `surname`, `age`, `occupation`) VALUES\n");
+            BufferedReader fh = new BufferedReader(new FileReader(filename));
+            String s;
+            while ((s=fh.readLine())!=null){
+                String f[] = s.split("[|]");
+                //System.out.println(f[0]+" "+f[1]+" "+f[2]+" "+f[3]);
+                out.write("("+f[0]+", '0','"+f[2]+"' , '', '', '', "+f[1]+", '"+f[3]+"'),\n");
+
+            }
+            out.flush();
+            out.close();
+            fh.close();
+        }
+
+
+
+	public static void main(String[] args) throws XPathExpressionException, IOException, InterruptedException, SQLException{
 		GenreClient gg = new GenreClient();
-		gg.getMovieHtml();
+		//gg.getMovieHtml();
+                gg.writeUserSql("u.user");
 
 	}
 
