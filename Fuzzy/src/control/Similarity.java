@@ -98,7 +98,7 @@ public class Similarity {
     }
 
     public static ArrayList<User> getNeighbourhood(int idUser,ArrayList<User> allUsers) throws SQLException{
-        ArrayList<User> neighbourhood = new ArrayList<User>();
+        
         HashMap<User,Double> rankedUsers = new HashMap<User, Double>();
         DataMining data = new DataMining();
         //get all the rated movie from idUser
@@ -126,29 +126,36 @@ public class Similarity {
             rankedUsers.put(currentUser,score);
         }
         System.out.println("one:"+rankedUsers.size()+"\n"+rankedUsers);
-        sortOutTen(rankedUsers);
-        return neighbourhood;
+        return sortOutTen(rankedUsers);
+        
     }
 
 
-    private static ArrayList<User> sortOutTen(HashMap<User,Double> rankedUsers){
-        ArrayList<User> sortedUsers = new ArrayList<User>();
-        List mapValues = new ArrayList(rankedUsers.values());
-        Collections.sort(mapValues);
-        System.out.println("fuck you mofo:"+mapValues.size()+"\n "+mapValues);
-        /*Iterator<Entry<Integer, User>> iterator = rankedUsers.entrySet().iterator();
-        while(iterator.hasNext()){
 
-            User aux = new User();
-            if(iterator.next().)
-   
+    
+    private static ArrayList<User> sortOutTen(HashMap<User,Double> x) {
+        ArrayList<User> rankedUser = new ArrayList<User>();
+        Object temp = null;
+        Object[] xArray = x.entrySet().toArray();
+        for(int j=0;j<xArray.length;j++) {
+            for(int i=j;i<xArray.length;i++) {
+                Entry<User,Double> a = (Entry<User, Double>) xArray[j];
+                Entry<User,Double> b = (Entry<User, Double>) xArray[i];
+                if(a.getValue()>b.getValue()) {
+                    temp = xArray[j];
+                    xArray[j]=xArray[i];
+                    xArray[i]=temp;
+                }//fine if
+            }//fine for
+        }//fine for
+        //System.out.println("lenght ->"+xArray.length);
+        for(int f=0;f<10;f++){
+            Entry<User,Double> element = (Entry<User, Double>) xArray[f];
+            rankedUser.add(element.getKey());
         }
-        }*/
+        return rankedUser;
+    }//fine bubbleSort
 
-        //Map<Double,User> sortedMap = new TreeMap<Double, User>(rankedUsers);
-        //System.out.println("two:"+sortedMap+"\n"+sortedMap);
-        return sortedUsers;
-    }
 
 
 
