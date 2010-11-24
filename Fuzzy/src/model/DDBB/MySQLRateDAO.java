@@ -78,16 +78,15 @@ public class MySQLRateDAO extends MySQLDaoFactory implements RateDAO{
         String sentence="select * from Rate where idUser="+idUser+" and idFilm="+idFilm+";";
         Connection conexion = getConnection();
         Statement sentencia = conexion.createStatement();
-	    ResultSet rs = sentencia.executeQuery( sentence );
-            Rate retu= new Rate(0,0,0);
-                  while (rs.next()) {
-		  Rate rate = new Rate( rs.getInt("idFilm"), rs.getInt("idUser"),
+	ResultSet rs = sentencia.executeQuery( sentence );
+        rs.next();
+	Rate rate = new Rate( rs.getInt("idFilm"), rs.getInt("idUser"),
 					rs.getInt( "rate" ));
-                  retu = rate;
-               }
-	    sentencia.close();
-	    closeConnection(conexion);
-	    return retu;
+                  
+               
+	sentencia.close();
+	closeConnection(conexion);
+	return rate;
     }
 
 
