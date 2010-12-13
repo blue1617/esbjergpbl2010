@@ -22,4 +22,5 @@ public interface FilmDAO {
     public void insertFilm(MovieHTML mov) throws SQLException;
     public ArrayList<Film> getNotRankedFilms(ArrayList<Rate> rates) throws SQLException;
     public ArrayList<Film> getRankedFilms(ArrayList<Rate> rates) throws SQLException;
+    public ArrayList<Film> get10Films() throws SQLException;
 }

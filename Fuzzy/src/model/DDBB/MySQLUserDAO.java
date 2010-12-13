@@ -51,9 +51,12 @@ public class MySQLUserDAO extends MySQLDaoFactory implements UserDAO{
         String sentence = "SELECT * FROM USER WHERE NAME='"+name+"';";
         Statement sentencia = conexion.createStatement();
         ResultSet rs = sentencia.executeQuery(sentence);
-        User user = new User( rs.getInt("idUser"), rs.getInt("idItem"),
+        User user=null;
+        while (rs.next()) {
+        user = new User( rs.getInt("idUser"), rs.getInt("idItem"),
 					rs.getString( "name" ), rs.getString( "surname" ),
 					rs.getString( "age" ), rs.getString("occupation"), rs.getString("sex"), rs.getString("password"));
+        }
         sentencia.close();
 	closeConnection(conexion);
         return user;
