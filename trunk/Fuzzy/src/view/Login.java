@@ -13,6 +13,7 @@ class Login extends JFrame implements ActionListener
  JButton SUBMIT;
  JPanel panel;
  JLabel label1,label2;
+ String value1;
  final JTextField  text1,text2;
   Login()
   {
@@ -39,15 +40,15 @@ class Login extends JFrame implements ActionListener
    public void actionPerformed(ActionEvent ae)
   {
     DataMining data = new DataMining();
-    String value1=text1.getText();
+    value1=text1.getText();
     String value2=text2.getText();
         try {
             if (data.validate(value1, value2)) {
-                NextPage page = new NextPage();
+                NextPage page = new NextPage(value1);
                 page.setVisible(true);
-                JLabel label = new JLabel("Welcome:" + value1);
-                page.getContentPane().add(label);
-                this.setVisible(false);
+                //JLabel label = new JLabel("Welcome:" + value1);
+               // page.getContentPane().add(label);
+                this.setVisible(true);
             } else {
                 System.out.println("enter the valid username and password");
                 JOptionPane.showMessageDialog(this, "Incorrect login or password", "Error", JOptionPane.ERROR_MESSAGE);

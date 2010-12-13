@@ -128,5 +128,26 @@ public class MySQLFilmDAO extends MySQLDaoFactory implements FilmDAO{
 	    closeConnection(conexion);
          return exit;
     }
+    public ArrayList<Film> get10Films() throws SQLException {
+
+         String sentence="select * from film limit 10;";
+
+        ArrayList<Film> list = new ArrayList<Film>();
+
+
+        Connection conexion = getConnection();
+        Statement sentencia = conexion.createStatement();
+	    ResultSet rs = sentencia.executeQuery( sentence );
+
+	    while (rs.next()) {
+		  Film film = new Film( rs.getInt("idFilm"), rs.getInt("idItem"),
+					rs.getString( "Title" ), rs.getString( "Year" ));
+                  list.add(film);
+	    }
+	    sentencia.close();
+	    closeConnection(conexion);
+	    return list;
+
+    }
 
 }

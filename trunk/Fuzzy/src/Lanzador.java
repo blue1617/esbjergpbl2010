@@ -37,9 +37,9 @@ public class Lanzador {
                // System.out.println("asdsfd");
                 //ArrayList<Item> items = itemDAO.getItems();
                 //System.out.println("total items number: "+items.size());
-                //DataMining data = new DataMining();
-
-                Similarity.getNeighbourhood(13,allUsers);
+                DataMining data = new DataMining();
+                data.get10R1(2);
+                //Similarity.getNeighbourhood(13,allUsers);
                 //ArrayList<Film> targetMovies = data.NotRankedList(13);
                 //ArrayList<Film> ratedMovies = data.getRankedListGreaterThan(13,3);
                 //System.out.println("size-> "+ratedMovies.size());
